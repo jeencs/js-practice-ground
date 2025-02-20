@@ -1,0 +1,48 @@
+body {
+	
+	background-color: #eee;
+	color: #444;
+	
+}
+
+#chess-board {
+	
+	width: 600px;
+	height: 600px;
+	margin-left: 300px;
+	margin-top: 50px;
+	border: 1px solid #222;
+	
+	
+}
+
+#chess-board td {
+	border: 1px solid #222;
+	height: 50px;
+	width: 50px;
+	text-align: center;
+}
+
+.chess-cell i { 
+	font-size: 45px;
+}
+
+#chess-board td:hover {
+	cursor: pointer;
+}
+
+.black {
+	background-color: #DAB57C;
+}
+
+.white {
+	background-color: #EBE8E5;
+}
+
+.black:hover {
+	background-color: #D1A768;
+}
+
+.white:hover {
+	background-color: #EEECED;
+}
