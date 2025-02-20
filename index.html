@@ -3,106 +3,158 @@
 		<title>
 			Scripting Practice
 		</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Grechen+Fuemen&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-	
-	
-	
-		<table id="chess-board">
-			
-			<!----- first row of main elements (rook, bishop, knight, king, queen ------>
+		<div class="timer-section">
+			<table class="timer">
+				<tr>
+					<td><span id="hour">00</span> :</td>
+					<td><span id="minute">00</span> :</td>
+					<td><span id="second">00</span></td>
+				</tr>
+			</table>
+			<button onclick="startGame()"><i class="fa-solid fa-play"></i> Start</button>
+			<button onclick="pauseGame()"><i class="fa-solid fa-pause"></i> Pause</button>
+		</div>
+		<table>
 			<tr>
-				<td class="chess-cell black"><i class="fa-solid fa-chess-rook"></i></td>
-				<td class="chess-cell white"><i class="fa-solid fa-chess-bishop"></i></td>
-				<td class="chess-cell black"><i class="fa-solid fa-chess-knight"></i></td>
-				<td class="chess-cell white"><i class="fa-solid fa-chess-king"></i></td>
-				<td class="chess-cell black"><i class="fa-solid fa-chess-queen"></i></td>
-				<td class="chess-cell white"><i class="fa-solid fa-chess-knight"></i></td>
-				<td class="chess-cell black"><i class="fa-solid fa-chess-bishop"></i></td>
-				<td class="chess-cell white"><i class="fa-solid fa-chess-rook"></i></td>
-			</tr>
+				<td>
+					<div class="player">
+						<div class="player-avatar">
+							<img src="https://imgs.search.brave.com/TvhvSUWb-IGEDNrtFr0V-yJabveY3LQCvEIZuCDk2Bc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pY29u/cy52ZXJ5aWNvbi5j/b20vcG5nL28vbWlz/Y2VsbGFuZW91cy91/c2VyLWF2YXRhci91/c2VyLWF2YXRhci1t/YWxlLTUucG5n" />
+							</div>
+							<div class="player-info">
+								<p>Hazar Gul Nazari</p>
+							</div>
+							
+							<div class="player-scores">
+							<p>0</p>
+						</div>
+					</div>
+				</td>
+				
+				<td>
+					<table id="chess-board">
 			
-			<tr>
-				<td class="chess-cell white"><i class="fa-solid fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn1"></i></td>
-				<td class="chess-cell black"><i class="fa-solid fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn2"></i></td>
-				<td class="chess-cell white"><i class="fa-solid fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn3"></i></td>
-				<td class="chess-cell black"><i class="fa-solid fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn4"></i></td>
-				<td class="chess-cell white"><i class="fa-solid fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn5"></i></td>
-				<td class="chess-cell black"><i class="fa-solid fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn6"></i></td>
-				<td class="chess-cell white"><i class="fa-solid fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn7"></i></td>
-				<td class="chess-cell black"><i class="fa-solid fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn8"></i></td>
+						<!----- first row of main elements (rook, bishop, knight, king, queen ------>
+						<tr>
+							<td class="chess-cell black"><i class="fa-solid fa-chess-rook"></i></td>
+							<td class="chess-cell white"><i class="fa-solid fa-chess-bishop"></i></td>
+							<td class="chess-cell black"><i class="fa-solid fa-chess-knight"></i></td>
+							<td class="chess-cell white"><i class="fa-solid fa-chess-king"></i></td>
+							<td class="chess-cell black"><i class="fa-solid fa-chess-queen"></i></td>
+							<td class="chess-cell white"><i class="fa-solid fa-chess-knight"></i></td>
+							<td class="chess-cell black"><i class="fa-solid fa-chess-bishop"></i></td>
+							<td class="chess-cell white"><i class="fa-solid fa-chess-rook"></i></td>
+						</tr>
+						
+						<tr>
+							<td class="chess-cell white"><i class="fa-solid fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn1"></i></td>
+							<td class="chess-cell black"><i class="fa-solid fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn2"></i></td>
+							<td class="chess-cell white"><i class="fa-solid fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn3"></i></td>
+							<td class="chess-cell black"><i class="fa-solid fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn4"></i></td>
+							<td class="chess-cell white"><i class="fa-solid fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn5"></i></td>
+							<td class="chess-cell black"><i class="fa-solid fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn6"></i></td>
+							<td class="chess-cell white"><i class="fa-solid fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn7"></i></td>
+							<td class="chess-cell black"><i class="fa-solid fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn8"></i></td>
+						</tr>
+						
+						<tr>
+							<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-3-cell-1"></td>
+							<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-3-cell-2"></td>
+							<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-3-cell-3"></td>
+							<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-3-cell-4"></td>
+							<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-3-cell-5"></td>
+							<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-3-cell-6"></td>
+							<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-3-cell-7"></td>
+							<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-3-cell-8"></td>
+						</tr>
+						
+						<tr>
+							<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)"  id="row-4-cell-1"></td>
+							<td class="chess-cell black"  ondrop="drop(event)" ondragover="allowDrop(event)" id="row-4-cell-2"></td>
+							<td class="chess-cell white"  ondrop="drop(event)" ondragover="allowDrop(event)" id="row-4-cell-3"></td>
+							<td class="chess-cell black"  ondrop="drop(event)" ondragover="allowDrop(event)" id="row-4-cell-4"></td>
+							<td class="chess-cell white"  ondrop="drop(event)" ondragover="allowDrop(event)" id="row-4-cell-5"></td>
+							<td class="chess-cell black"  ondrop="drop(event)" ondragover="allowDrop(event)" id="row-4-cell-6"></td>
+							<td class="chess-cell white"  ondrop="drop(event)" ondragover="allowDrop(event)" id="row-4-cell-7"></td>
+							<td class="chess-cell black"  ondrop="drop(event)" ondragover="allowDrop(event)" id="row-4-cell-8"></td>
+						</tr>
+						
+						<tr>
+							<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-5-cell-1"></td>
+							<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-5-cell-2"></td>
+							<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-5-cell-3"></td>
+							<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-5-cell-4"></td>
+							<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-5-cell-5"></td>
+							<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-5-cell-6"></td>
+							<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-5-cell-7"></td>
+							<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-5-cell-8"></td>
+						</tr>
+						
+						<tr>
+							<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-6-cell-1"></td>
+							<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-6-cell-2"></td>
+							<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-6-cell-3"></td>
+							<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-6-cell-4"></td>
+							<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-6-cell-5"></td>
+							<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-6-cell-6"></td>
+							<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-6-cell-7"></td>
+							<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-6-cell-8"></td>
+						</tr>
+						
+						<tr>
+							<td class="chess-cell black"><i class="fa-regular fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn-white-1"></i></td>
+							<td class="chess-cell white"><i class="fa-regular fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn-white-2"></i></td>
+							<td class="chess-cell black"><i class="fa-regular fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn-white-3"></i></td>
+							<td class="chess-cell white"><i class="fa-regular fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn-white-4"></i></td>
+							<td class="chess-cell black"><i class="fa-regular fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn-white-5"></i></td>
+							<td class="chess-cell white"><i class="fa-regular fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn-white-6"></i></td>
+							<td class="chess-cell black"><i class="fa-regular fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn-white-7"></i></td>
+							<td class="chess-cell white"><i class="fa-regular fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn-white-8"></i></td>
+						</tr>
+						
+						<!-- main chess elemetns -->
+						<tr>
+							<td class="chess-cell white"><i class="fa-regular fa-chess-rook"></i></td>
+							<td class="chess-cell black"><i class="fa-regular fa-chess-bishop"></i></td>
+							<td class="chess-cell white"><i class="fa-regular fa-chess-knight"></i></td>
+							<td class="chess-cell black"><i class="fa-regular fa-chess-queen"></i></td>
+							<td class="chess-cell white"><i class="fa-regular fa-chess-king"></i></td>
+							<td class="chess-cell black"><i class="fa-regular fa-chess-knight"></i></td>
+							<td class="chess-cell white"><i class="fa-regular fa-chess-bishop"></i></td>
+							<td class="chess-cell black"><i class="fa-regular fa-chess-rook"></i></td>
+						</tr>
+					
+					</table>
+				</td>
+				
+				<td>
+					<div class="player">
+						<div class="player-avatar">
+							<img src="https://png.pngtree.com/png-vector/20241107/ourmid/pngtree-flat-design-female-avatar-icon-with-blue-shirt-simple-and-professional-png-image_14313907.png" />
+							</div>
+							<div class="player-info">
+								<p>Jeena Jan</p>
+							</div>
+							
+							<div class="player-scores">
+							<p>0</p>
+						</div>
+					</div>
+				</td>
 			</tr>
-			
-			<tr>
-				<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-3-cell-1"></td>
-				<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-3-cell-2"></td>
-				<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-3-cell-3"></td>
-				<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-3-cell-4"></td>
-				<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-3-cell-5"></td>
-				<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-3-cell-6"></td>
-				<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-3-cell-7"></td>
-				<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-3-cell-8"></td>
-			</tr>
-			
-			<tr>
-				<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)"  id="row-4-cell-1"></td>
-				<td class="chess-cell black"  ondrop="drop(event)" ondragover="allowDrop(event)" id="row-4-cell-2"></td>
-				<td class="chess-cell white"  ondrop="drop(event)" ondragover="allowDrop(event)" id="row-4-cell-3"></td>
-				<td class="chess-cell black"  ondrop="drop(event)" ondragover="allowDrop(event)" id="row-4-cell-4"></td>
-				<td class="chess-cell white"  ondrop="drop(event)" ondragover="allowDrop(event)" id="row-4-cell-5"></td>
-				<td class="chess-cell black"  ondrop="drop(event)" ondragover="allowDrop(event)" id="row-4-cell-6"></td>
-				<td class="chess-cell white"  ondrop="drop(event)" ondragover="allowDrop(event)" id="row-4-cell-7"></td>
-				<td class="chess-cell black"  ondrop="drop(event)" ondragover="allowDrop(event)" id="row-4-cell-8"></td>
-			</tr>
-			
-			<tr>
-				<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-5-cell-1"></td>
-				<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-5-cell-2"></td>
-				<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-5-cell-3"></td>
-				<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-5-cell-4"></td>
-				<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-5-cell-5"></td>
-				<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-5-cell-6"></td>
-				<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-5-cell-7"></td>
-				<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-5-cell-8"></td>
-			</tr>
-			
-			<tr>
-				<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-6-cell-1"></td>
-				<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-6-cell-2"></td>
-				<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-6-cell-3"></td>
-				<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-6-cell-4"></td>
-				<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-6-cell-5"></td>
-				<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-6-cell-6"></td>
-				<td class="chess-cell white" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-6-cell-7"></td>
-				<td class="chess-cell black" ondrop="drop(event)" ondragover="allowDrop(event)" id="row-6-cell-8"></td>
-			</tr>
-			
-			<tr>
-				<td class="chess-cell black"><i class="fa-regular fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn-white-1"></i></td>
-				<td class="chess-cell white"><i class="fa-regular fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn-white-2"></i></td>
-				<td class="chess-cell black"><i class="fa-regular fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn-white-3"></i></td>
-				<td class="chess-cell white"><i class="fa-regular fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn-white-4"></i></td>
-				<td class="chess-cell black"><i class="fa-regular fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn-white-5"></i></td>
-				<td class="chess-cell white"><i class="fa-regular fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn-white-6"></i></td>
-				<td class="chess-cell black"><i class="fa-regular fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn-white-7"></i></td>
-				<td class="chess-cell white"><i class="fa-regular fa-chess-pawn" draggable="true" ondragstart="drag(event)" id="pawn-white-8"></i></td>
-			</tr>
-			
-			<!-- main chess elemetns -->
-			<tr>
-				<td class="chess-cell white"><i class="fa-regular fa-chess-rook"></i></td>
-				<td class="chess-cell black"><i class="fa-regular fa-chess-bishop"></i></td>
-				<td class="chess-cell white"><i class="fa-regular fa-chess-knight"></i></td>
-				<td class="chess-cell black"><i class="fa-regular fa-chess-queen"></i></td>
-				<td class="chess-cell white"><i class="fa-regular fa-chess-king"></i></td>
-				<td class="chess-cell black"><i class="fa-regular fa-chess-knight"></i></td>
-				<td class="chess-cell white"><i class="fa-regular fa-chess-bishop"></i></td>
-				<td class="chess-cell black"><i class="fa-regular fa-chess-rook"></i></td>
-			</tr>
-		
 		</table>
+	
+
+	
+	
+		
 	
 	
 	
